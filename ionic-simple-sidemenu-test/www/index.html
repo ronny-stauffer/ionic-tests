@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="TodoController">
+    <!--
+    <ion-pane> <!- A simple container that fits content, with no side effects. Adds the ‘pane’ class to the element. ->
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content>
+      </ion-content>
+    </ion-pane>
+    -->
+    <ion-side-menus>
+      <!-- Center content -->
+      <ion-side-menu-content drag-content="false">
+        <!--
+        <ion-header-bar class="bar-dark">
+          <h1 class="title">Todo</h1>
+        </ion-header-bar>
+        <ion-content>
+        </ion-content>
+        -->
+        <ion-footer-bar class="bar-dark">
+          <button class="button button-icon" ng-click="toggleSideMenu()">
+            <i class="icon ion-navicon"></i>
+          </button>
+          <h1 class="title">{{pageIndex}}</h1>
+          <!-- New Task button-->
+          <!-- If (and only if) there are multiple buttons, the last one goes on the right side? (If there is only one button it goes on the left side.) -->
+          <button class="button button-icon" ng-click="composeItem()">
+            <i class="icon ion-compose"></i>
+          </button>
+        </ion-footer-bar>
+        <ion-content scroll="false" ng-if="pageIndex === 1"> <!-- Alternative to 'pageIndex === 1': "Real" Navigation with <ion-nav-view>? -->
+          <ion-list>
+            <ion-item ng-repeat="item in items">
+              {{item.title}}
+            </ion-item>
+          </ion-list>
+          <!-- Variant 1 -->
+          <!--
+          Button Classes:
+            * button: Marks the (basic HTML) button as an Ionic button
+            * button-icon: Draw the button as icon button (ohne Rahmen und grauer Schattierung -> das Icon ist der Button)
+            * icon: Zeichnet das Icon grösser (in "Icon-Grösse")?
+            * ion-navicon: Name of the icon
+          -->
+          <button class="button button-icon icon ion-navicon" ng-click="toggleSideMenu()">
+          </button>
+          <!-- Variant 2 (führt zum selben Ergebnis) -->
+          <!--
+          <button class="button button-icon">
+            <i class="icon ion-navicon"></i>Side Menu</button>
+          -->
+        </ion-content>
+        <ion-content scroll="false" ng-if="pageIndex === 2">
+          <p>Content</p>
+        </ion-content>
+      </ion-side-menu-content>
+
+      <!-- Left side menu -->
+      <ion-side-menu side="left">
+        <ion-header-bar class="bar-dark">
+          <h1 class="title">Pages</h1>
+          <button class="button button-icon ion-plus" ng-click="addItem()">
+          </button>
+          <button class="button button-icon ion-minus" ng-click="removeItem()">
+          </button>
+          <!-- The last button goes on the right side? (If there is only one button is also goes on the right side.) -->
+          <button class="button button-icon ion-star" ng-click="starItem()">
+          </button>
+        </ion-header-bar>
+        <ion-content scroll="false">
+          <ion-list>
+            <ion-item ng-click="selectPage(1)" menu-close>First Page</ion-item> <!-- menu-close: Makes that the item closes the menu when clicked -->
+            <ion-item ng-click="selectPage(2)" menu-close>Second Page</ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+  </body>
+</html>

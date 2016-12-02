@@ -1,0 +1,50 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content drag-content="false">
+    <!--
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">Todo</h1>
+    </ion-header-bar>
+    -->
+    <ion-nav-bar class="bar-dark"> <!-- class="hide" -->
+      <ion-nav-back-button>
+      </ion-nav-back-button> <!-- End tag cannot be omitted -->
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"> <!-- menu-toggle: Makes that the button toggles the specified side menu -->
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <!--
+    <ion-content>
+      <h1>Test Content</h1>
+    </ion-content>
+    -->
+    <ion-nav-view name="menuContent"/> <!-- Has to be used together with a <ion-nav-bar>? -->
+    <ion-footer-bar class="bar-dark">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+      </button>
+    </ion-footer-bar>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close ng-click="login()">
+          Login
+        </ion-item>
+        <ion-item menu-close href="#/app/search">
+          Search
+        </ion-item>
+        <ion-item menu-close href="#/app/browse">
+          Browse
+        </ion-item>
+        <ion-item menu-close href="#/app/playlists">
+          Playlists
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
